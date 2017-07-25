@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 12:59:16 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/22 16:34:59 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/25 13:22:52 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void				ft_free_char_tab(char **tab, int size);
 int					ft_open(char *file_name);
 int					ft_nb_lines(char *file_name);
 int					ft_tab_length(char **tab);
+long				ft_atol(char *s);
 
 #endif

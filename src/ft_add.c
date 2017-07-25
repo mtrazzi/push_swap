@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 15:56:18 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/24 20:08:13 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/25 15:31:34 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,24 @@ t_elt		*ft_new(int n)
 	return (ft_new_elt(n, NULL, NULL));
 }
 
-t_stack		ft_new_stack(void)
+t_stack		*ft_new_stack(void)
 {
-	t_stack	s;
-
-	s.ta = NULL;
-	s.ba = NULL;
-	s.tb = NULL;
-	s.bb = NULL;
+	t_stack	*s;
+	
+	s = ft_memalloc(sizeof(t_stack));
+	s->ta = NULL;
+	s->ba = NULL;
+	s->tb = NULL;
+	s->bb = NULL;
 	return (s);
 }
 
-void	ft_add_elt(t_elt *t, int n)
+t_elt		*ft_add_elt(t_elt *t, int n)
 {
 	t_elt	*new;
 
 	new = ft_new(n);
-	new->next = t->next;
+	new->next = t;
 	t->prev = new;
+	return (new);
 }

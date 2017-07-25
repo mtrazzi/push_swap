@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
+/*   ft_delete.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/23 17:42:41 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/25 15:42:46 by mtrazzi          ###   ########.fr       */
+/*   Created: 2017/07/25 14:35:25 by mtrazzi           #+#    #+#             */
+/*   Updated: 2017/07/25 15:09:09 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_top(t_elt *t)
+t_elt	*ft_delete_elt(t_elt *lst)
 {
-	if (!t)
-	{
-		ft_putstr("NULL\n");
-		return ;
-	}
-	ft_putnbr(t->n);
-}
+	t_elt	*tmp;
 
-void	ft_print_lst(t_elt *t)
-{
-	while (t)
-	{
-		ft_print_top(t);
-		ft_putstr("\n|\n");
-		t = t->next;
-	}
-	ft_putstr("NULL\n");
+	if (!lst)
+		return (NULL);
+	tmp = lst->next;
+	tmp->prev = NULL;
+	return (tmp);
 }

@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/07/23 18:16:45 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/07/25 16:08:03 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_2			=	push_swap
 
 CC				=	clang
 
-FLAGS			=	-Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra
 
 #--------------------------------------------------------------------------------
 # PATHS
@@ -34,10 +34,14 @@ LIB_PATH		=	./libft/
 # SRC
 #--------------------------------------------------------------------------------
 
-SRC1_FILES		=	checker.c	\
-					ft_add.c	\
-					ft_parse.c	\
-					ft_print.c
+SRC1_FILES		=	checker.c			\
+					ft_add.c			\
+					ft_parse.c			\
+					ft_print.c			\
+					ft_check_argv.c		\
+					ft_error.c			\
+					ft_delete.c			\
+					ft_parse_stdin.c
 
 SRC1			=	$(addprefix $(SRC_PATH), $(SRC1_FILES))
 
