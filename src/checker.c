@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 18:33:40 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 12:16:23 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/26 15:15:41 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,16 @@
 int main(int ac, char **av)
 {
 	t_stack *s;
-	t_op	*lst;
+	t_op	*lst_op;
 
 	s = ft_new_stack();
 	s->ta = ft_parse_argv(ac, av);
-	ft_print_stack(s);
-	ft_print_stack(ft_pb(s));
-	ft_print_stack(ft_pb(s));
-	/*lst = ft_parse_stdin();
-	ft_putstr(">>>pop : ");
-	ft_putstr(ft_pop_op(&lst));
-	ft_putstr("<<<\n");
-	ft_print_lst_op(lst);*/
-
+	lst_op = ft_parse_stdin();
+	while (lst_op)
+		ft_do_op(s, ft_pop_op(&lst_op));
+	if (ft_is_ordered(s->ta) && ft_is_empty(s->tb))
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
 	return (0);
 }

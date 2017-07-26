@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 13:08:43 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/25 13:30:35 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/26 15:12:57 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_is_number(char *s)
 	int i;
 
 	i = 0;
+	if (*s == '-')
+		s++;
 	while (ft_isdigit(s[i]))
 		i++;
 	return (i > 0 && !s[i]);
@@ -26,9 +28,9 @@ int		ft_is_int(char *s)
 {
 	if (!ft_is_number(s))
 		return (0);
-	if (ft_atoi(s) < 0 && (ft_strlen(s) > 11 && ft_atol(s) < INT_MIN))
+	if (ft_strlen(s) > 11)
 		return (0);
-	if (ft_atoi(s) > 0 && (ft_strlen(s) > 10 && ft_atol(s) > INT_MAX))
+	if (ft_atol(s) < INT_MIN || ft_atol(s) > INT_MAX)
 		return (0);
 	return (1);
 }

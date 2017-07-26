@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 15:45:33 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 09:42:09 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/26 15:24:06 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ t_op	*ft_parse_stdin(void)
 {
 	char *line;
 	t_op **lst;
+	t_op *tmp;
 
-	*lst = NULL;
+	tmp = NULL;
+	lst = &tmp;
 	while (get_next_line(0, &line) > 0)
 	{
 		if (!ft_is_valid_op(line))

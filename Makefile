@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/07/26 10:55:32 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/07/26 15:27:08 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SRC1_FILES		=	checker.c			\
 					ft_stack_utils.c	\
 					ft_swap.c			\
 					ft_push.c			\
-					ft_rotate.c
+					ft_rotate.c			\
+					ft_rrotate.c		\
+					ft_do_op.c
 
 SRC1			=	$(addprefix $(SRC_PATH), $(SRC1_FILES))
 

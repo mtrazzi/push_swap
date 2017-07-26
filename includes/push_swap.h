@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 15:43:09 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 12:03:06 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:29:08 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,12 @@ t_stack				*ft_sb(t_stack *s);
 t_stack				*ft_ss(t_stack *s);
 t_stack				*ft_pa(t_stack *s);
 t_stack				*ft_pb(t_stack *s);
+t_stack				*ft_ra(t_stack *s);
+t_stack				*ft_rb(t_stack *s);
+t_stack				*ft_rr(t_stack *s);
+t_stack				*ft_rra(t_stack *s);
+t_stack				*ft_rrb(t_stack *s);
+t_stack				*ft_rrr(t_stack *s);
+t_stack				*ft_do_op(t_stack *s, char *op);
 
 #endif
