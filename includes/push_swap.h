@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 15:43:09 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 14:29:08 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/26 17:19:32 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int					ft_is_correct_input(int ac, char **av);
 t_elt				*ft_delete_elt(t_elt *lst);
 void				ft_print_lst(t_elt *lst);
 int					ft_is_valid_op(char *s);
-t_op				*ft_add_to_end(char *op, t_op*lst);
+void				ft_add_to_end(char *op, t_op **lst);
 t_op				*ft_parse_stdin(void);
 void				ft_print_lst_op(t_op *t);
 char				*ft_pop_op(t_op **lst);
@@ -68,5 +68,8 @@ t_stack				*ft_rra(t_stack *s);
 t_stack				*ft_rrb(t_stack *s);
 t_stack				*ft_rrr(t_stack *s);
 t_stack				*ft_do_op(t_stack *s, char *op);
+void				ft_free_lst_op(t_op *lst);
+void				ft_free_lst_elt(t_elt *lst);
+void				ft_free_stack(t_stack *s);
 
 #endif

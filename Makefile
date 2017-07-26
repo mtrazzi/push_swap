@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/07/26 15:27:08 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/07/26 16:31:59 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,29 @@ SRC1_FILES		=	checker.c			\
 					ft_push.c			\
 					ft_rotate.c			\
 					ft_rrotate.c		\
-					ft_do_op.c
+					ft_do_op.c			\
+					ft_free_lst.c
 
 SRC1			=	$(addprefix $(SRC_PATH), $(SRC1_FILES))
+
+SRC2_FILES		=	push_swap.c			\
+					ft_add.c			\
+					ft_parse.c			\
+					ft_print.c			\
+					ft_check_argv.c		\
+					ft_error.c			\
+					ft_delete.c			\
+					ft_parse_stdin.c	\
+					ft_op_utils.c		\
+					ft_check_pile.c		\
+					ft_stack_utils.c	\
+					ft_swap.c			\
+					ft_push.c			\
+					ft_rotate.c			\
+					ft_rrotate.c		\
+					ft_do_op.c
+
+SRC2			=	$(addprefix $(SRC_PATH), $(SRC2_FILES))
 
 #--------------------------------------------------------------------------------
 # OBJ
@@ -60,6 +80,10 @@ SRC1			=	$(addprefix $(SRC_PATH), $(SRC1_FILES))
 OBJ1_FILES		=	$(SRC1_FILES:.c=.o)
 
 OBJ1			=	$(addprefix $(OBJ_PATH), $(OBJ1_FILES))
+
+OBJ2_FILES		=	$(SRC2_FILES:.c=.o)
+
+OBJ2			=	$(addprefix $(OBJ_PATH), $(OBJ2_FILES))
 
 #--------------------------------------------------------------------------------
 # INC
@@ -84,12 +108,17 @@ LIB				=	$(addprefix $(LIB_PATH), $(LIB_FILE))
 # RULES
 #--------------------------------------------------------------------------------
 
-all: $(NAME_1)
+all: $(NAME_1) $(NAME_2)
 
 $(NAME_1): $(LIB) $(OBJ1)
 	@echo "Building $(NAME_1)..."
 	$(CC) $(CFLAGS) $(LIB) $(OBJ1) -o $@
 	@echo "\033[3;94m!$(NAME_1) built!\033[0m"
+
+$(NAME_2): $(LIB) $(OBJ2)
+	@echo "Building $(NAME_2)..."
+	$(CC) $(CFLAGS) $(LIB) $(OBJ2) -o $@
+	@echo "\033[3;94m!$(NAME_2) built!\033[0m"
 
 $(LIB):
 	@$(MAKE) -C $(LIB_PATH) $(LIB_FILE)
@@ -101,14 +130,17 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADERS) $(LIB)
 clean:
 	@make -C $(LIB_PATH) fclean
 	@/bin/rm -f $(OBJ1)
+	@/bin/rm -f $(OBJ2)
 
 fclean: clean
 	@/bin/rm -f $(NAME_1)
+	@/bin/rm -f $(NAME_2)
 
 re: fclean all
 
 norme: fclean
 	norminette $(SRC1)
+	norminette $(SRC2)
 	norminette $(LIB_PATH)
 	norminette $(INC_PATH)
 

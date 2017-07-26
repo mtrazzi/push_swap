@@ -1,48 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_op_utils.c                                      :+:      :+:    :+:   */
+/*   ft_free_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/26 09:06:23 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 18:38:00 by mtrazzi          ###   ########.fr       */
+/*   Created: 2017/07/26 16:31:20 by mtrazzi           #+#    #+#             */
+/*   Updated: 2017/07/26 18:31:04 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_op	*ft_new_op(char *op)
-{
-	t_op *t;
-
-	t = ft_memalloc(sizeof(t_op));
-	t->next = NULL;
-	t->op = op;
-	return (t);
-}
-
-void	ft_add_to_end(char *op, t_op **lst)
+void	ft_free_lst_op(t_op *lst)
 {
 	t_op *tmp;
 
-	if (!(*lst))
-	{
-		*lst = ft_new_op(op);
+	if (!lst)
 		return ;
+	while (lst->next)
+	{
+		tmp = lst->next;
+		free(lst->op);
+		free(lst);
+		lst = tmp;
+		ft_putstr("coucou\n");
 	}
-	tmp = *lst;
-	while ((*lst)->next != NULL)
-		*lst = (*lst)->next;
-	(*lst)->next = ft_new_op(op);
-	*lst = tmp;
+	free(lst->op);
+	free(lst);
 }
 
-char	*ft_pop_op(t_op **lst)
+void	ft_free_lst_elt(t_elt *lst)
 {
-	char *s;
+	t_elt *tmp;
 
-	s = (*lst)->op;
-	*lst = (*lst)->next;
-	return (s);
+	if (!lst)
+		return ;
+	while (lst->next)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
+	free(lst);
+}
+
+void	ft_free_stack(t_stack *s)
+{
+	ft_free_lst_elt(s->ta);
+	ft_free_lst_elt(s->tb);
+	free(s);
 }
