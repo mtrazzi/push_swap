@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 15:42:34 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/25 15:28:07 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/26 10:08:33 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_elt	*ft_argv_to_lst(int ac, char **av)
 	lst = ft_new(ft_atoi(av[1]));
 	while (i < ac)
 	{
-		lst = ft_add_elt(lst, ft_atoi(av[i]));
+		lst = ft_add_elt_end(lst, ft_atoi(av[i]));
 		i++;
 	}
 	return (lst);

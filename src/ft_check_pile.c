@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_check_pile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/23 18:33:40 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 12:16:23 by mtrazzi          ###   ########.fr       */
+/*   Created: 2017/07/26 09:17:47 by mtrazzi           #+#    #+#             */
+/*   Updated: 2017/07/26 09:54:19 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int		ft_is_empty(t_elt *lst)
 {
-	t_stack *s;
-	t_op	*lst;
+	return (!lst);
+}
 
-	s = ft_new_stack();
-	s->ta = ft_parse_argv(ac, av);
-	ft_print_stack(s);
-	ft_print_stack(ft_pb(s));
-	ft_print_stack(ft_pb(s));
-	/*lst = ft_parse_stdin();
-	ft_putstr(">>>pop : ");
-	ft_putstr(ft_pop_op(&lst));
-	ft_putstr("<<<\n");
-	ft_print_lst_op(lst);*/
-
-	return (0);
+int		ft_is_ordered(t_elt *lst)
+{
+	while (lst->next)
+	{
+		if (lst->n > lst->next->n)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
 }

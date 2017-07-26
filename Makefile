@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/07/25 16:08:03 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/07/26 10:55:32 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,13 @@ SRC1_FILES		=	checker.c			\
 					ft_check_argv.c		\
 					ft_error.c			\
 					ft_delete.c			\
-					ft_parse_stdin.c
+					ft_parse_stdin.c	\
+					ft_op_utils.c		\
+					ft_check_pile.c		\
+					ft_stack_utils.c	\
+					ft_swap.c			\
+					ft_push.c			\
+					ft_rotate.c
 
 SRC1			=	$(addprefix $(SRC_PATH), $(SRC1_FILES))
 
