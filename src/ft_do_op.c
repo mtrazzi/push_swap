@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 14:19:41 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 14:59:25 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/27 14:30:10 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,11 @@ t_stack		*ft_do_op(t_stack *s, char *op)
 		return (ft_rrb(s));
 	else
 		return (ft_rrr(s));
+}
+
+t_env		*ft_do_op_env(t_env *e, char *op)
+{
+	e->s = ft_do_op(e->s, op);
+	ft_add_to_end(op, &(e->lst_op));
+	return (e);
 }

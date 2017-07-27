@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_min_rot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/23 18:33:40 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/27 15:46:14 by mtrazzi          ###   ########.fr       */
+/*   Created: 2017/07/27 11:20:29 by mtrazzi           #+#    #+#             */
+/*   Updated: 2017/07/27 13:58:52 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int		ft_min_rot_inf(t_elt *t)
 {
-	t_stack *s;
-	t_op	*lst_op;
-	t_op	*tmp;
+	int i;
 
-	s = ft_new_stack();
-	s->ta = ft_parse_argv(ac, av);
-	lst_op = ft_parse_stdin();
-	tmp = lst_op;
-	while (lst_op)
-		ft_do_op(s, ft_pop_op(&lst_op));
-	ft_print_stack(s);
-	if (ft_is_ordered(s->ta) && ft_is_empty(s->tb))
-		ft_putstr("OK\n");
-	else
-		ft_putstr("KO\n");
-	ft_free_lst_op(tmp);
-	ft_free_stack(s);
-	return (0);
+	i = 1;
+	if (!t->next)
+		return (i);
+	while (t->next)
+	{
+		t = t->next;
+		i++;
+	}
+	return (i);
+}
+
+int		ft_min_rot_sup(t_elt *t)
+{
+	int i;
+
+	i = 0;
+	while (t->prev->next)
+	{
+		t = t->prev;
+		i++;
+	}
+	return (i);
+}
+
+int		ft_min_rot(t_elt *t)
+{
+	return (ft_min(ft_min_rot_inf(t), ft_min_rot_sup(t)));	
 }

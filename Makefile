@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/07/26 16:31:59 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/07/27 15:04:17 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,11 @@ SRC2_FILES		=	push_swap.c			\
 					ft_push.c			\
 					ft_rotate.c			\
 					ft_rrotate.c		\
-					ft_do_op.c
+					ft_do_op.c			\
+					ft_min_rot.c		\
+					ft_insert.c			\
+					ft_env_utils.c		\
+					ft_update.c
 
 SRC2			=	$(addprefix $(SRC_PATH), $(SRC2_FILES))
 

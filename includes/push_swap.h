@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 15:43:09 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 17:19:32 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/27 15:07:07 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ typedef struct		s_op
 	struct s_op		*next;
 	char			*op;
 }					t_op;
+typedef struct	s_env
+{
+	t_stack		*s;
+	t_op		*lst_op;
+}				t_env;
 t_elt				*ft_new_elt(int n, t_elt *next, t_elt *prev);
 t_stack				*ft_new_stack(void);
 t_elt				*ft_add_elt(t_elt *t, int n);
@@ -71,5 +76,14 @@ t_stack				*ft_do_op(t_stack *s, char *op);
 void				ft_free_lst_op(t_op *lst);
 void				ft_free_lst_elt(t_elt *lst);
 void				ft_free_stack(t_stack *s);
+int					ft_min_rot(t_elt *t);
+t_env				*ft_init_env(int ac, char **av);
+t_elt				*ft_find_min(t_elt *lst, t_stack *s);
+t_env				*ft_do_op_env(t_env *e, char *op);
+int					ft_min_rot_inf(t_elt *t);
+int					ft_min_rot_sup(t_elt *t);
+void				ft_update(t_elt *t, t_env *e);
+t_elt				*ft_where_to_insert(int m, t_elt *lst);
+void				ft_last_reorder(t_env *e);
 
 #endif
