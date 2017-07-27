@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 10:46:36 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 11:54:01 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/27 17:17:40 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ t_stack	*ft_sb(t_stack *s)
 
 	if (ft_lst_len_opt(s->tb) < 2)
 		return (s);
+	//ft_putstr("ENTERING RB - STACK IS\n");
+	//ft_print_stack(s);
 	fst = s->tb;
 	snd = s->tb->next;
-	s->ta = snd;
+	s->tb = snd;
 	fst->next = snd->next;
 	snd->next = fst;
 	snd->prev = fst->prev;

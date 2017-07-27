@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 13:26:41 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 14:18:04 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/27 17:17:30 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_stack		*ft_rb(t_stack *s)
 {
 	if (!s->tb || s->tb->prev == s->tb)
 		return (s);
-	if (s->ta->next == s->tb->prev)
+	if (s->tb->next == s->tb->prev)
 		return (ft_sb(s));
 	s->tb->prev->next = s->tb;
 	s->tb = s->tb->next;

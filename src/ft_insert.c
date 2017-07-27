@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:28:35 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/27 15:38:23 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/27 17:26:40 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,18 @@ t_elt	*ft_where_to_insert(int m, t_elt *lst)
 {
 	if (!lst->next)
 		return (lst);
-	ft_putstr("m is ");
-	ft_putnbr(m);
-	ft_putstr("\nAnd top of lst is ");
-	ft_putnbr(lst->n);
-	ft_putchar('\n');
 	while (!((m < lst->prev->n && m > lst->n) || \
 	(lst->prev->n < lst->n && (m > lst->n || m < lst->prev->n))))
 	{
-		ft_putstr("loop");
-		ft_putnbr(lst->prev->n);
+		ft_putstr("m is ");
+		ft_putnbr(m);
+		ft_putchar('\n');
+		ft_putstr("lst->n is ");
 		ft_putnbr(lst->n);
+		ft_putchar('\n');
+		ft_putstr("lst->prev->n is ");
+		ft_putnbr(lst->prev->n);
+		ft_putchar('\n');
 		lst = lst->next;
 	}
 	return (lst);

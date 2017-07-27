@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 15:33:07 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/27 15:16:54 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/07/27 17:18:46 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 		ft_update(t, e);
 		//ft_putstr("quit loop\n");
 	}
-	ft_putstr("quit while\n");
+//	ft_putstr("quit while\n");
 	ft_last_reorder(e);
 	while (!ft_is_empty(e->s->tb))
 		ft_do_op_env(e, "pa");
