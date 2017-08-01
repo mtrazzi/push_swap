@@ -14,7 +14,7 @@ NAME_1			=	checker
 
 NAME_2			=	push_swap
 
-CC				=	clang
+CC			=	clang
 
 FLAGS			=	-Wall -Wextra
 
@@ -147,5 +147,12 @@ norme: fclean
 	norminette $(SRC2)
 	norminette $(LIB_PATH)
 	norminette $(INC_PATH)
-
+linux: $(LIB)
+	@echo "Building $(NAME_1)..."
+	$(CC) $(CFLAGS) $(SRC1) $(INC) $(LIB) -o $(NAME_1)
+	@echo -e "\033[3;94m!$(NAME_1) built!\033[0m"
+	@echo "Building $(NAME_2)..."
+	$(CC) $(CFLAGS) $(SRC2) $(INC) $(LIB) -o $(NAME_2)
+	@echo -e "\033[3;94m!$(NAME_2) built!\033[0m"
+	
 .PHONY: all, clean, fclean, re, norme
