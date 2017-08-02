@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 13:59:10 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/27 17:18:12 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/02 19:10:53 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	ft_repeat_op(int k, char *op, t_env *e)
 
 void	ft_update_left(t_elt *t, t_env *e)
 {	
-//	ft_putstr("\n##########\n\nUPDATING LEFT\n\n##########\n");
 	if (ft_min_rot_sup(t) < ft_min_rot_inf(t))
-		ft_repeat_op(ft_min_rot_sup(t), "ra", e);
+		ft_repeat_op(ft_min_rot_sup(t), "ra", e);	
 	else
 		ft_repeat_op(ft_min_rot_inf(t), "rra", e);
 }
@@ -37,10 +36,7 @@ void	ft_update_right(t_elt *t, t_env *e)
 {
 	t_elt	*to_insert;
 
-//	ft_print_stack(e->s);
-//	ft_putstr("\n##########\n\nUPDATING RIGHT\n\n##########\n");
 	to_insert = ft_where_to_insert(t->n, e->s->tb);
-//	ft_putstr("passed first check in");
 	if (ft_min_rot_sup(to_insert) < ft_min_rot_inf(to_insert))
 		ft_repeat_op(ft_min_rot_sup(to_insert), "rb", e);
 	else
@@ -54,17 +50,13 @@ void	ft_update(t_elt *t, t_env *e)
 		ft_do_op_env(e, "pb");
 		return ;
 	}
-//	ft_putstr("before left");
 	ft_update_left(t, e);
-//	ft_putstr("before right");
 	ft_update_right(t, e);
-//	ft_putstr("after right");
 	ft_do_op_env(e, "pb");
 }
 
 void	ft_last_reorder(t_env *e)
 {
-	//ft_putstr("\n\n>>>>>LAST REORDER<<<<<\n\n");
 	while (e->s->tb->n < e->s->tb->prev->n)
 		ft_do_op_env(e, "rb");
 }

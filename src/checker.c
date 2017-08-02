@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 18:33:40 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/27 15:46:14 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/02 17:46:40 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int main(int ac, char **av)
 	tmp = lst_op;
 	while (lst_op)
 		ft_do_op(s, ft_pop_op(&lst_op));
-	ft_print_stack(s);
 	if (ft_is_ordered(s->ta) && ft_is_empty(s->tb))
 		ft_putstr("OK\n");
 	else

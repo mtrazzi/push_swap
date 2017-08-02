@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 16:31:20 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 18:31:04 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/02 17:54:20 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_free_lst_op(t_op *lst)
 		free(lst->op);
 		free(lst);
 		lst = tmp;
-		ft_putstr("coucou\n");
 	}
 	free(lst->op);
 	free(lst);

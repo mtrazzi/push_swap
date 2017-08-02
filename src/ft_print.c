@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 17:42:41 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 15:50:33 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/02 18:50:48 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	ft_print_top(t_elt *t)
 
 void	ft_print_lst(t_elt *t)
 {
+	if (t)
+	{
+		ft_putnbr(t->prev->n);
+		ft_putstr("\n|\n");
+	}
 	while (t)
 	{
 		ft_print_top(t);
@@ -44,8 +49,9 @@ void	ft_print_lst_op(t_op *t)
 
 void	ft_print_stack(t_stack *s)
 {
-	ft_putstr(">>>>>>>>>>\n\nstack a\n\n>>>>>>>>>>\n\n");
+	ft_putstr("\n\n>>>>>>>>>>\n\nstack a\n\n>>>>>>>>>>\n");
 	ft_print_lst(s->ta);
-	ft_putstr(">>>>>>>>>>\n\nstack b\n\n>>>>>>>>>>\n\n");
+	ft_putstr(">>>>>>>>>>\n\nstack b\n\n>>>>>>>>>>\n");
 	ft_print_lst(s->tb);
+	ft_putstr(">>>>>>>>>>\n\n");
 }
