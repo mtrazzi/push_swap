@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:20:29 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/27 13:58:52 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/03 20:00:50 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ int		ft_min_rot_sup(t_elt *t)
 
 int		ft_min_rot(t_elt *t)
 {
-	return (ft_min(ft_min_rot_inf(t), ft_min_rot_sup(t)));	
+	return (ft_min(ft_min_rot_inf(t), ft_min_rot_sup(t)));
 }

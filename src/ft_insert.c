@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:28:35 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/02 19:18:22 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/03 20:44:11 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,25 @@ t_elt	*ft_where_to_insert(int m, t_elt *lst)
 	if (!lst->next)
 		return (lst);
 	while (!((m < lst->prev->n && m > lst->n) || \
-	(lst->prev->n < lst->n && (m > lst->n || m < lst->prev->n))))
-		lst = lst->next;
+	(lst->prev->n < lst->n && (m > lst->n || m < lst->prev->n))))	
+		lst = lst->next;	
 	return (lst);
 }
 
 int		ft_cost_insert(t_elt *t, t_stack *s)
 {
+	t_elt *to_insert;
+	int tab[4];
+
 	if (!s->tb)
 		return (ft_min_rot(t));
-	return (ft_min_rot(t) + ft_min_rot(ft_where_to_insert(t->n, s->tb)) + 1);
+	to_insert = ft_where_to_insert(t->n, s->tb);		
+	tab[0] = ft_min_rot_inf(t);
+	tab[1] = ft_min_rot_sup(t);
+	tab[2] = ft_min_rot_inf(to_insert);
+	tab[3] = ft_min_rot_sup(to_insert);
+	return (ft_min(tab[0] + tab[2], ft_min(tab[0] + tab[3], \
+			ft_min(tab[1] + tab[2], tab[1] + tab[3]))));
 }
 
 t_elt	*ft_find_min(t_elt *lst, t_stack *s)

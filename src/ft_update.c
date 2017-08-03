@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 13:59:10 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/02 19:10:53 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/03 20:47:51 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,53 @@ void	ft_repeat_op(int k, char *op, t_env *e)
 	}
 }
 
-void	ft_update_left(t_elt *t, t_env *e)
-{	
-	if (ft_min_rot_sup(t) < ft_min_rot_inf(t))
-		ft_repeat_op(ft_min_rot_sup(t), "ra", e);	
+int		ft_choose_sum(int a, int b, int c, int d)
+{
+	int	s[4];
+
+	s[0] = a + c;
+	s[1] = a + d;
+	s[2] = b + c;
+	s[3] = b + d;
+	if (s[0] <= ft_min(ft_min(s[1], s[2]), s[3]))
+		return (0);
+	else if (s[1] <= ft_min(s[2], s[3]))
+		return (1);
+	else if (s[2] <= s[3])
+		return (2);
 	else
-		ft_repeat_op(ft_min_rot_inf(t), "rra", e);
+		return (3);
 }
 
-void	ft_update_right(t_elt *t, t_env *e)
+int		ft_which_case(t_elt *t, t_env *e)
 {
-	t_elt	*to_insert;
+	t_elt *to_insert;
 
-	to_insert = ft_where_to_insert(t->n, e->s->tb);
-	if (ft_min_rot_sup(to_insert) < ft_min_rot_inf(to_insert))
-		ft_repeat_op(ft_min_rot_sup(to_insert), "rb", e);
-	else
-		ft_repeat_op(ft_min_rot_inf(to_insert), "rrb", e);
+	to_insert = ft_where_to_insert(t->n, e->s->tb);		
+	ft_print_stack(e->s);
+	printf("where_to_insert %d ? %d !\n", t->n, to_insert->n);
+	return (ft_choose_sum(ft_min_rot_inf(t), ft_min_rot_sup(t), \
+			ft_min_rot_inf(to_insert), ft_min_rot_sup(to_insert)));
 }
 
 void	ft_update(t_elt *t, t_env *e)
 {
+	int	n;
+
 	if (!e->s->tb)
 	{
 		ft_do_op_env(e, "pb");
 		return ;
 	}
-	ft_update_left(t, e);
-	ft_update_right(t, e);
+	n = ft_which_case(t, e);
+	if (n == 0 || n == 1)
+		ft_repeat_op(ft_min_rot_inf(t), "rra", e);
+	else
+		ft_repeat_op(ft_min_rot_sup(t), "ra", e);
+	if (n == 0 || n == 2)
+		ft_repeat_op(ft_min_rot_inf(t), "rrb", e);
+	else
+		ft_repeat_op(ft_min_rot_sup(t), "rb", e);
 	ft_do_op_env(e, "pb");
 }
 
