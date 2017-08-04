@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 09:17:47 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/26 09:54:19 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/04 15:47:13 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ int		ft_is_ordered(t_elt *lst)
 		lst = lst->next;
 	}
 	return (1);
+}
+
+int		ft_is_correct(t_env *e)
+{
+	return (ft_is_empty(e->s->tb) && ft_is_ordered(e->s->ta));
 }
