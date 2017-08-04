@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:20:29 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/03 20:00:50 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/04 11:23:04 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int		ft_min_rot_inf(t_elt *t)
 	int i;
 
 	i = 1;
+	if (!t->prev->next)
+		return (0);
 	if (!t->next)
-		return (i);
+		return (1);
 	while (t->next)
 	{
 		t = t->next;

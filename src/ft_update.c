@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 13:59:10 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/03 20:47:51 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/04 12:26:20 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ int		ft_which_case(t_elt *t, t_env *e)
 {
 	t_elt *to_insert;
 
-	to_insert = ft_where_to_insert(t->n, e->s->tb);		
-	ft_print_stack(e->s);
-	printf("where_to_insert %d ? %d !\n", t->n, to_insert->n);
+	to_insert = ft_where_to_insert(t->n, e->s->tb);
 	return (ft_choose_sum(ft_min_rot_inf(t), ft_min_rot_sup(t), \
 			ft_min_rot_inf(to_insert), ft_min_rot_sup(to_insert)));
 }
@@ -56,21 +54,23 @@ int		ft_which_case(t_elt *t, t_env *e)
 void	ft_update(t_elt *t, t_env *e)
 {
 	int	n;
+	t_elt	*to_insert;
 
 	if (!e->s->tb)
 	{
 		ft_do_op_env(e, "pb");
 		return ;
 	}
+	to_insert = ft_where_to_insert(t->n, e->s->tb);
 	n = ft_which_case(t, e);
 	if (n == 0 || n == 1)
 		ft_repeat_op(ft_min_rot_inf(t), "rra", e);
 	else
 		ft_repeat_op(ft_min_rot_sup(t), "ra", e);
 	if (n == 0 || n == 2)
-		ft_repeat_op(ft_min_rot_inf(t), "rrb", e);
+		ft_repeat_op(ft_min_rot_inf(to_insert), "rrb", e);
 	else
-		ft_repeat_op(ft_min_rot_sup(t), "rb", e);
+		ft_repeat_op(ft_min_rot_sup(to_insert), "rb", e);
 	ft_do_op_env(e, "pb");
 }
 
