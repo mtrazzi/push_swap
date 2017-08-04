@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 15:43:09 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/03 20:28:05 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/04 12:42:57 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void				ft_update(t_elt *t, t_env *e);
 t_elt				*ft_where_to_insert(int m, t_elt *lst);
 void				ft_last_reorder(t_env *e);
 void				ft_repeat_op(int k, char *op, t_env *e);
+void				ft_casual_sa(t_env *e);
 
 #endif

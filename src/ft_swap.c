@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 10:46:36 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/02 19:11:46 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/04 14:59:09 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack	*ft_sa(t_stack *s)
 	t_elt *fst;
 	t_elt *snd;
 
-	if (ft_lst_len_opt(s->ta) < 2)
+	if (!s->ta || !s->ta->next)
 		return (s);
 	fst = s->ta;
 	snd = s->ta->next;
@@ -28,11 +28,12 @@ t_stack	*ft_sa(t_stack *s)
 		s->ta = snd;
 		return (s);
 	}
-	s->ta = snd;
 	fst->next = snd->next;
+	snd->next->prev = fst;
 	snd->next = fst;
 	snd->prev = fst->prev;
 	fst->prev = snd;
+	s->ta = snd;
 	return (s);
 }
 
@@ -41,7 +42,7 @@ t_stack	*ft_sb(t_stack *s)
 	t_elt *fst;
 	t_elt *snd;
 
-	if (ft_lst_len_opt(s->tb) < 2)
+	if (!s->tb || !s->tb->next)
 		return (s);
 	fst = s->tb;
 	snd = s->tb->next;
@@ -52,11 +53,12 @@ t_stack	*ft_sb(t_stack *s)
 		s->tb = snd;
 		return (s);
 	}
-	s->tb = snd;
 	fst->next = snd->next;
+	snd->next->prev = fst;
 	snd->next = fst;
 	snd->prev = fst->prev;
 	fst->prev = snd;
+	s->tb = snd;
 	return (s);
 }
 

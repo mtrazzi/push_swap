@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 14:19:41 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/04 12:12:10 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/04 14:37:29 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 t_stack		*ft_do_op(t_stack *s, char *op)
 {
-//	ft_print_stack(s);
-//	ft_putstr("\n**************************\n");
+//	ft_putstr("\n**************************");
 //	ft_putstr(op);
-//	ft_putstr("\n**************************\n");
+//	ft_putstr("**************************\n");
 	if (ft_strlen(op) == 2 && !ft_strncmp(op, "sa", 2))
 		return (ft_sa(s));
 	else if (ft_strlen(op) == 2 && !ft_strncmp(op, "ra", 2))

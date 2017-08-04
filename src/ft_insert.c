@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 11:28:35 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/04 12:12:12 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/04 14:33:45 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ int		ft_cost_insert(t_elt *t, t_stack *s)
 	if (!s->tb)
 		return (ft_min_rot(t));
 	to_insert = ft_where_to_insert(t->n, s->tb);		
-//	ft_putstr("t is : ");
-//	ft_putnbr(t->n);
-//	ft_putchar('\n');
-//	ft_putnbr(ft_min_rot_inf(t));
-//	ft_putnbr(ft_min_rot_sup(t));
-//	ft_putnbr(ft_min_rot_inf(to_insert));
-//	ft_putnbr(ft_min_rot_sup(to_insert));
-//	ft_putchar('\n');
 	tab[0] = ft_min_rot_inf(t);
 	tab[1] = ft_min_rot_sup(t);
 	tab[2] = ft_min_rot_inf(to_insert);
@@ -52,6 +44,8 @@ t_elt	*ft_find_min(t_elt *lst, t_stack *s)
 	int		tmp;
 	t_elt	*result;
 
+	if (lst->next == lst)
+		return (lst);
 	min = ft_cost_insert(lst, s);
 	result = lst;
 	while (lst->next)

@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/07/27 15:04:17 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/08/04 15:11:16 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_1			=	checker
 
 NAME_2			=	push_swap
 
-CC			=	clang
+CC				=	clang
 
 FLAGS			=	-Wall -Wextra
 
@@ -73,7 +73,7 @@ SRC2_FILES		=	push_swap.c			\
 					ft_min_rot.c		\
 					ft_insert.c			\
 					ft_env_utils.c		\
-					ft_update.c
+					ft_update.c			\
 
 SRC2			=	$(addprefix $(SRC_PATH), $(SRC2_FILES))
 
