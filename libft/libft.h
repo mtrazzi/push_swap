@@ -6,14 +6,14 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 12:59:16 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/22 15:38:34 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 16:20:51 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 
 # define LIBFT_H
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 1
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>

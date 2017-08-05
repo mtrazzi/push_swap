@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/08/05 15:12:31 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/08/05 16:43:55 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ SRC2_FILES		=	push_swap.c			\
 					ft_env_utils.c		\
 					ft_update.c			\
 					ft_backtracking.c   \
-					ft_process.c
+					ft_process.c		\
+					ft_free_lst.c
 
 SRC2			=	$(addprefix $(SRC_PATH), $(SRC2_FILES))
 
@@ -118,12 +119,12 @@ all: $(NAME_1) $(NAME_2)
 
 $(NAME_1): $(LIB) $(OBJ1)
 	@echo "Building $(NAME_1)..."
-	$(CC) $(CFLAGS) $(LIB) $(OBJ1) -o $@
+	$(CC) -g $(CFLAGS) $(LIB) $(OBJ1) -o $@
 	@echo "\033[3;94m!$(NAME_1) built!\033[0m"
 
 $(NAME_2): $(LIB) $(OBJ2)
 	@echo "Building $(NAME_2)..."
-	$(CC) $(CFLAGS) $(LIB) $(OBJ2) -o $@
+	$(CC) -g $(CFLAGS) $(LIB) $(OBJ2) -o $@
 	@echo "\033[3;94m!$(NAME_2) built!\033[0m"
 
 $(LIB):

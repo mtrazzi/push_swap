@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 09:06:23 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 12:18:06 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 16:58:16 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ void	ft_add_to_end(char *op, t_op **lst)
 char	*ft_pop_op(t_op **lst)
 {
 	char *s;
+	t_op *tmp;
 
 	s = (*lst)->op;
+	tmp = *lst;
 	*lst = (*lst)->next;
+	free(tmp->op);
+	free(tmp);
 	return (s);
 }
 
@@ -67,6 +71,7 @@ char	*ft_pop_end(t_op **lst)
 		*lst = (*lst)->next;
 	}
 	*lst = tmp;
+	free(prev->next);
 	prev->next = NULL;	
 	return (s);
 }
