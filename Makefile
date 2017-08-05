@@ -6,7 +6,7 @@
 #    By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/23 11:08:39 by mtrazzi           #+#    #+#              #
-#    Updated: 2017/08/04 16:16:27 by mtrazzi          ###   ########.fr        #
+#    Updated: 2017/08/05 15:12:31 by mtrazzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRC2_FILES		=	push_swap.c			\
 					ft_insert.c			\
 					ft_env_utils.c		\
 					ft_update.c			\
-					ft_backtracking.c
+					ft_backtracking.c   \
+					ft_process.c
 
 SRC2			=	$(addprefix $(SRC_PATH), $(SRC2_FILES))
 

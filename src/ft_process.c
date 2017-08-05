@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/23 18:33:40 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 10:53:48 by mtrazzi          ###   ########.fr       */
+/*   Created: 2017/08/05 15:07:24 by mtrazzi           #+#    #+#             */
+/*   Updated: 2017/08/05 15:13:37 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+void	ft_process(int ac, t_env *e)
 {
-	t_stack *s;
-	t_op	*lst_op;
-	t_op	*tmp;
+	t_elt	*t;
 
-	s = ft_new_stack();
-	s->ta = ft_parse_argv(ac, av);
-	lst_op = ft_parse_stdin();
-	tmp = lst_op;
-	while (lst_op)
-		ft_do_op(s, ft_pop_op(&lst_op));
-	if (ft_is_ordered(s->ta) && ft_is_empty(s->tb))
-		ft_putstr("OK\n");
+	if (ac < 6)
+		ft_backtracking(e);
 	else
-		ft_putstr("KO\n");
-	ft_free_lst_op(tmp);
-	ft_free_stack(s);
-	return (0);
+	{
+		while (!ft_is_empty(e->s->ta))
+		{
+			t = ft_find_min(e->s->ta, e->s);
+			ft_update(t, e);
+		}
+		ft_last_reorder(e);
+		while (!ft_is_empty(e->s->tb))
+			ft_do_op_env(e, "pa");
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 15:43:09 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/04 16:52:54 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 15:13:16 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,10 @@ void				ft_last_reorder(t_env *e);
 void				ft_repeat_op(int k, char *op, t_env *e);
 int					ft_is_correct(t_env *e);
 void				ft_backtracking(t_env *e);
+t_stack				*ft_do_reverse_op(t_stack *s, char *op);
+t_env				*ft_do_reverse_op_env(t_env *e, char *op);
+char				*ft_pop_end(t_op **lst);
+char				*ft_last_op(t_op *lst);
+void				ft_process(int ac, t_env *e);
 
 #endif

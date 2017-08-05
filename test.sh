@@ -7,7 +7,7 @@ magenta=$(tput setaf 5)
 cyan=$(tput setaf 6)
 white=$(tput setaf 7)
 normal=$(tput sgr0)
-export ARG=`ruby -e "puts (0..${1-10}).to_a.shuffle.join(' ')"`
+export ARG=`ruby -e "puts (1..${1-10}).to_a.shuffle.join(' ')"`
 printf "${ARG}\n"
 export LST=`./push_swap $ARG`
 ##printf "$LST"
