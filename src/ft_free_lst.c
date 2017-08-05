@@ -6,12 +6,17 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 16:31:20 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 16:47:53 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 18:58:10 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void ft_free(void **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
+}
 void	ft_free_lst_op(t_op *lst)
 {
 	t_op *tmp;
@@ -21,7 +26,9 @@ void	ft_free_lst_op(t_op *lst)
 	while (lst->next)
 	{
 		tmp = lst->next;
+		lst->next = NULL;
 		free(lst->op);
+		lst->op = NULL;
 		free(lst);
 		lst = tmp;
 	}

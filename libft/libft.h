@@ -6,14 +6,14 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 12:59:16 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 16:20:51 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 19:18:42 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 
 # define LIBFT_H
-# define BUFF_SIZE 1
+# define BUF_SIZE 42
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
@@ -92,4 +92,15 @@ int					ft_open(char *file_name);
 int					ft_nb_lines(char *file_name);
 int					ft_tab_length(char **tab);
 
+# define SPILL_MULT		2
+# define MAX_FD			1000
+
+typedef struct		s_stock
+{
+	char			*spill;
+	long			length;
+	long			lu;
+	int				read_ret;
+	char			*line_end;
+}					t_stock;
 #endif

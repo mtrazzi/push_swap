@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 15:45:33 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 16:26:11 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 19:27:32 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ t_op	*ft_parse_stdin(void)
 	t_op *lst;
 
 	lst = NULL;
+	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
 		if (!ft_is_valid_op(line))
 			ft_error();
 		ft_add_to_end(line, &lst);
 	}
+	free(line);
+	line = NULL;
 	return (lst);
 }

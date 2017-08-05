@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 09:06:23 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 16:58:16 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 18:09:54 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ char	*ft_pop_op(t_op **lst)
 	s = (*lst)->op;
 	tmp = *lst;
 	*lst = (*lst)->next;
-	free(tmp->op);
 	free(tmp);
+	free(tmp->op);
 	return (s);
 }
 

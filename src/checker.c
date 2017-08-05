@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 18:33:40 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 15:38:45 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 19:27:30 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int main(int ac, char **av)
 {
 	t_stack *s;
 	t_op	*lst_op;
-	t_op	*tmp;
 
 	s = ft_new_stack();
 	s->ta = ft_parse_argv(ac, av);
@@ -27,7 +26,7 @@ int main(int ac, char **av)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
+  	ft_free_lst_op(lst_op);
 	ft_free_stack(s);
-	while (1) {}
 	return (0);
 }

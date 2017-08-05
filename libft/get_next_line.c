@@ -6,105 +6,99 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 11:58:27 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/07/19 14:50:19 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 19:16:49 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	assign_and_do(char **dest, char *src, int *go)
+static int		end_of_line(t_stock *stock)
 {
-	if (!(*go))
-		return ;
-	if (src != NULL)
-		*dest = src;
-	*go = (src != NULL);
-	return ;
+	while (stock->lu > stock->line_end - stock->spill
+			&& *(stock->line_end) != '\n')
+		stock->line_end++;
+	if (*(stock->line_end) == '\n')
+		return (stock->lu > stock->line_end - stock->spill);
+	return (0);
 }
 
-char	*get_line_aux(char **line, char *tmp)
+static int		increase_spill_size(t_stock *stock)
 {
-	int		n;
-	char	*after;
+	char		*new_spill;
+	long		new_size;
 
-	n = 0;
-	while (tmp[n] != '\n')
-		n++;
-	tmp[n] = '\0';
-	if (!(*line = ft_strdup(tmp)))
-		return (NULL);
-	if (!(after = ft_strdup(tmp + n + 1)))
-		return (NULL);
-	return (after);
+	new_size = stock->length * SPILL_MULT;
+	if (new_size < stock->length + BUF_SIZE)
+		new_size += BUF_SIZE;
+	new_spill = malloc((new_size + 1) * sizeof(char));
+	if (!new_spill)
+		return (1);
+	ft_strcpy(new_spill, stock->spill);
+	new_spill[new_size] = '\0';
+	stock->line_end = new_spill + (stock->line_end - stock->spill);
+	free(stock->spill);
+	stock->spill = new_spill;
+	stock->length = new_size;
+	return (0);
 }
 
-char	*get_buffer(const int fd, int *over, int *go)
+static int		setup(t_stock **stock)
 {
-	char	*buff;
-	int		ret;
-	char	*result;
-	char	*tmp;
-
-	assign_and_do(&buff, ft_strnew(BUFF_SIZE), go);
-	assign_and_do(&result, ft_strnew(BUFF_SIZE), go);
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0 && !ft_strchr(buff, '\n'))
-	{
-		assign_and_do(&tmp, ft_strdup(result), go);
-		free(result);
-		buff[ret] = '\0';
-		assign_and_do(&result, ft_strjoin(tmp, buff), go);
-		free(tmp);
-	}
-	buff[ret] = '\0';
-	assign_and_do(&tmp, ft_strdup(result), go);
-	free(result);
-	assign_and_do(&result, ft_strjoin(tmp, buff), go);
-	if (!(*over = (ret == 0)) && (ret == -1))
-		return (NULL);
-	free(tmp);
-	free(buff);
-	return (result);
+	*stock = malloc(sizeof(t_stock));
+	if (!*stock)
+		return (1);
+	(*stock)->length = BUF_SIZE;
+	(*stock)->spill = malloc(((*stock)->length + 1) * sizeof(char));
+	if (!(*stock)->spill)
+		return (1);
+	(*stock)->spill[(*stock)->length] = '\0';
+	(*stock)->lu = 0;
+	(*stock)->line_end = (*stock)->spill;
+	(*stock)->read_ret = 1;
+	return (0);
 }
 
-int		get_line(const int fd, char **line, int *over, int *go)
+static int		deal_with_returns(t_stock **pointer_to_stock
+		, t_stock *stock, char **line)
 {
-	static char	*tmp = "";
-	char		*to_free;
-	char		*buffer;
-	char		*fusion;
-
-	if (ft_strchr(tmp, '\n'))
-	{
-		to_free = tmp;
-		assign_and_do(&tmp, get_line_aux(line, tmp), go);
-		free(to_free);
-		return (*go);
-	}
-	if (!(buffer = get_buffer(fd, over, go)))
-		return ((*go = 0));
-	assign_and_do(&fusion, ft_strjoin(tmp, buffer), go);
-	if (ft_strchr(fusion, '\n'))
-		assign_and_do(&tmp, get_line_aux(line, fusion), go);
-	else
-	{
-		assign_and_do(line, ft_strdup(fusion), go);
-		tmp = "";
-	}
-	free(buffer);
-	free(fusion);
-	return (*go);
-}
-
-int		get_next_line(const int fd, char **line)
-{
-	int			x;
-	int			y;
-
-	x = 0;
-	y = 1;
-	if (!(get_line(fd, line, &x, &y)))
+	if (stock->read_ret < 0)
 		return (-1);
-	if (x && **line == '\0')
+	*line = ft_strsub(stock->spill, 0, stock->line_end - stock->spill);
+	if ((stock->read_ret <= 0 || stock->lu <= 0))
+	{
+		if (stock->spill)
+			free(stock->spill);
+		free(stock);
+		*pointer_to_stock = NULL;
 		return (0);
+	}
+	stock->lu += stock->spill - stock->line_end
+		- (stock->read_ret > 0
+				&& *(stock->line_end) == '\n'
+				&& stock->lu != stock->line_end - stock->spill);
+	ft_memcpy(stock->spill, stock->line_end + 1, stock->lu);
+	stock->line_end = stock->spill;
 	return (1);
+}
+
+int				get_next_line(int const fd, char **line)
+{
+	static t_stock	*stocks[MAX_FD];
+
+	if (fd >= MAX_FD || fd < 0 || line == NULL)
+		return (-1);
+	if (stocks[fd] && stocks[fd]->read_ret == 0)
+		return (0);
+	if (!stocks[fd] && setup(&stocks[fd]))
+		return (-1);
+	while (stocks[fd]->read_ret > 0 && !((end_of_line(stocks[fd]))))
+	{
+		while (stocks[fd]->lu + BUF_SIZE > stocks[fd]->length)
+			if (increase_spill_size(stocks[fd]))
+				return (-1);
+		stocks[fd]->read_ret = read(fd, stocks[fd]->spill + stocks[fd]->lu
+				, BUF_SIZE);
+		stocks[fd]->lu += stocks[fd]->read_ret;
+	}
+	return (deal_with_returns(&stocks[fd], stocks[fd], line));
 }
