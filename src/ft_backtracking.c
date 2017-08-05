@@ -6,7 +6,7 @@
 /*   By: mtrazzi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/04 15:13:01 by mtrazzi           #+#    #+#             */
-/*   Updated: 2017/08/05 15:06:16 by mtrazzi          ###   ########.fr       */
+/*   Updated: 2017/08/05 20:20:51 by mtrazzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int		ft_backtracking_aux(t_env *e, char **tab, int n, int k)
 	{
 		while (i != ft_do_not_repeat(i, e))
 			i = ft_do_not_repeat(i, e);
-			if (i > 10)
-				return (0);	
+		if (i > 10)
+			return (0);	
 //		ft_putstr("n is : ");
 //		ft_putnbr(n);
 //		ft_putchar('\n');
@@ -103,6 +103,11 @@ void	ft_backtracking(t_env *e)
 
 	k = 1;
 	tab = ft_op_tab();
-	while (!ft_backtracking_aux(e, tab, 0, k))
-		k++;
+	while (!ft_backtracking_aux(e, tab, 0, k))	
+	{
+		ft_free_lst_op(e->lst_op);
+		e->lst_op = NULL;
+		k++;	
+	}
+	free(tab);
 }
